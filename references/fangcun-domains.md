@@ -1,26 +1,26 @@
-# 默认领域与排期
+# 示例领域与排期
 
-这是“方寸生态”的示例配置。换账号或换主题时，替换领域、排期、路径和期刊范围。
+这是一份通用示例配置，用来演示如何把同一套日更流程复用到不同研究领域。换账号或换主题时，替换领域、排期、路径和期刊范围即可。
 
-## 08:30 — 钝化土壤微生物
+## 08:30 — 海洋微塑料生态
 
-- 输出目录：output/passivation-soil-microbes/
-- 主题范围：微生物介导的 Cd/Pb/As 等重金属钝化、根际微生物组重构、生物膜与矿物沉淀、生物炭—微生物联合修复。
-- 优先期刊：Environmental Science & Technology、iMeta、Nature/Science 系列、PNAS、ISME Journal、Microbiome、Soil Biology and Biochemistry、Journal of Hazardous Materials、Journal of Cleaner Production、Biochar。
+- 输出目录：output/marine-microplastics/
+- 主题范围：海洋微塑料、塑料圈、生态毒理、食物网传递、沉积物与水体迁移、塑料污染治理。
+- 优先期刊：Nature/Science 系列、Nature Sustainability、Nature Communications、PNAS、Environmental Science & Technology、Global Change Biology、Marine Pollution Bulletin。
 - 当前队列文件：library-progress.md。
 
-## 09:00 — Na 土壤生态
+## 09:00 — 城市传粉昆虫与绿地
 
-- 输出目录：output/fangcun-na/
-- 主题范围：Na 与土壤生态、植物—土壤互作、食物网、植食作用、全球变化、地上—地下耦合。
-- 优先期刊：Nature/Science 系列、PNAS、Ecology Letters、Ecology、Global Change Biology、New Phytologist、Functional Ecology、Nature Ecology & Evolution。
+- 输出目录：output/urban-pollinators/
+- 主题范围：城市传粉昆虫、绿地网络、植物—传粉者互作、城市化生态效应、城市生物多样性。
+- 优先期刊：Nature/Science 系列、Nature Ecology & Evolution、PNAS、Ecology Letters、Functional Ecology、Journal of Applied Ecology、Landscape and Urban Planning。
 - 当前队列文件：library-progress.md。
 
-## 09:30 — 固体废物和生活垃圾碳排放
+## 09:30 — 极端天气与城市水系统
 
-- 输出目录：output/solid-waste-msw-carbon/
-- 主题范围：生活垃圾填埋、焚烧、堆肥、厌氧消化、分类回收、厨余垃圾、垃圾渗滤液、填埋气/甲烷、垃圾焚烧发电、固废资源化、废弃物—能源系统、塑料与建筑固废碳足迹、固废全生命周期碳核算，以及固废管理对碳达峰碳中和的贡献。
-- 优先期刊：Nature/Science 系列、Nature Climate Change、Nature Sustainability、Nature Energy、Nature Communications、Science Advances、PNAS、Environmental Science & Technology、Environmental Science & Technology Letters、Environmental Research Letters、Waste Management、Resources, Conservation and Recycling、Journal of Cleaner Production、Bioresource Technology。
+- 输出目录：output/urban-water-extremes/
+- 主题范围：极端降雨、城市内涝、雨洪系统、城市水循环、气候适应、基础设施韧性。
+- 优先期刊：Nature/Science 系列、Nature Climate Change、Nature Sustainability、Nature Communications、Science Advances、Water Research、Environmental Research Letters。
 - 当前队列文件：library-progress.md。
 
 ## 共同选稿规则
