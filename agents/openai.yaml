@@ -1,0 +1,3 @@
+interface:
+  display_name: "Research Daily Content Pipeline"
+  short_description: "Daily Q1 literature to WeChat drafts"
