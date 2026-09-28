@@ -1,31 +1,31 @@
 media: media
 content:
   - name: blog
-    label: Blog
+    label: 技术博客
     type: collection
     path: blog
     fields:
       - name: title
-        label: Title
+        label: 标题
         type: string
       - name: date
-        label: Date
+        label: 日期
         type: date
       - name: authors
-        label: Authors
+        label: 作者
         type: string
         list: true
       - name: body
-        label: Body
+        label: 正文
         type: rich-text
   - name: workflow-docs
-    label: Workflow Docs
+    label: 工作流文档
     type: collection
     path: docs
     fields:
       - name: title
-        label: Title
+        label: 标题
         type: string
       - name: body
-        label: Body
+        label: 正文
         type: rich-text
