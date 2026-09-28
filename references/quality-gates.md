@@ -1,52 +1,52 @@
-# Quality gates
+# 质量门禁
 
-## Candidate gate
+## 候选门禁
 
-- Journal is JCR Q1, CAS division-1, or a domain-recognized flagship.
-- Publication date passes the recency priority.
-- Topic is inside the configured domain boundary.
-- DOI, title, authors, year, journal, and abstract are verifiable.
-- Candidate is not a duplicate of an existing draft or published article.
+- 期刊为 JCR Q1、中科院一区或领域公认顶刊。
+- 发表时间符合最近 12 个月 > 最近 3 年 > 3–5 年高相关的时间优先级。
+- 主题在配置的领域边界内。
+- DOI、题名、作者、年份、期刊和摘要可核验。
+- 与已有草稿或已发布文章不重复。
 
-## Full-text gate
+## 全文门禁
 
-- The main paper has a complete, verifiable full text.
-- Zotero PDF is preferred; otherwise use legitimate OA, institutional access, or a lawful author-shared copy.
-- If full text is unavailable, mark `needs_pdf`, report it, and ask the user to collect it.
-- Abstract-only writing is not allowed for the formal article.
+- 主稿有完整、可核验的全文。
+- 优先 Zotero PDF；否则使用合法 OA、机构订阅或作者公开版本。
+- 全文不可用时标记 needs_pdf，报告给用户并请其收集。
+- 不允许用摘要替代全文写正式文章。
 
-## Evidence gate
+## 证据门禁
 
-- Every numeric claim has a source anchor in the paper.
-- The article states the system boundary, functional unit, time range, geography, and scenario assumptions when relevant.
-- CO2, CH4, N2O, CO2e, GWP, direct emissions, downstream emissions, and avoided emissions are not conflated.
-- Measured values, modeled values, and scenario outputs are labeled correctly.
-- Correlation is not written as causation.
+- 每个数值都能在论文中找到来源。
+- 相关内容说明系统边界、功能单位、时间范围、地理范围和情景假设。
+- 不混淆 CO2、CH4、N2O、CO2e、GWP、直接排放、下游排放和替代减排。
+- 区分实测值、模型值和情景结果。
+- 不把相关关系写成因果关系。
 
-## Writing gate
+## 写作门禁
 
-- Main title follows `journal｜Chinese core finding`.
-- Body follows the standard six-part structure.
-- The lead states the paper’s actual contribution, not a generic topic sentence.
-- Figures and tables are explained near their relevant claims.
-- Boundaries and limitations are explicit.
-- No filler, no repeated claims, no unsupported policy recommendations.
+- 主标题符合“刊名｜中文核心发现”。
+- 正文遵循固定六段结构。
+- 导语说明论文的真实贡献，不写泛泛的话题句。
+- 图表在相关观点附近解释。
+- 明确写出边界和限制。
+- 没有套话、重复观点和无依据的政策建议。
 
-## Layout gate
+## 排版门禁
 
-- One consistent theme across all domains.
-- Original PDF figure/table objects are used without redrawing or data alteration.
-- Paper-information card has safe margins and no text overflow.
-- Wide and square covers both render correctly.
-- Canonical signature bar is inserted unchanged.
-- HTML validation passes with zero errors.
-- Preview renders correctly on mobile.
+- 所有领域使用同一主题。
+- 使用 PDF 原始图表对象，不重绘、不改数据。
+- 文献信息卡有安全边距，文字不出边框。
+- 宽封面和方形封面都能正常显示。
+- 统一签名条原样插入。
+- HTML 校验 0 ERROR。
+- 手机预览可读。
 
-## Publishing gate
+## 发布门禁
 
-- Title, author, digest, cover, body, and image captions are present.
-- No “image failed to load” warnings.
-- Default group-notification setting is off.
-- If verification is required, the run stops for user scan.
-- After submission, the status, appmsg ID, public URL, and Zotero keys are recorded.
-- Failures preserve the draft and report the exact blocker.
+- 标题、作者、摘要、封面、正文和图注完整。
+- 没有“图片加载失败”提示。
+- 默认群发通知关闭。
+- 需要验证时，任务暂停等待用户扫码。
+- 提交后记录状态、appmsg ID、公开链接和 Zotero key。
+- 发布失败时保留草稿并报告具体阻断点。
