@@ -7,6 +7,8 @@ authors:
 
 # 从日更公众号到可复用 Codex Skill：我如何把论文搜集、撰稿和发布串成一条流水线
 
+> Skill 仓库：https://github.com/dada303312/research-daily-content-pipeline
+>
 > 一个内容工作流真正难的地方，不是“让模型写一篇文章”，而是让它在每天重复执行时，仍然知道选什么论文、什么情况下不能写、格式如何保持一致，以及失败后把问题交给谁。
 
 我们把这个流程沉淀成了一个 Codex Skill：`research-daily-content-pipeline`。
