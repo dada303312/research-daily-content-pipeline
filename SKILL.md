@@ -1,63 +1,63 @@
 ---
 name: research-daily-content-pipeline
-description: "Run a repeatable daily research-content pipeline: discover recent Q1/top-journal papers across configured domains, require full-text verification, write evidence-grounded Chinese explainers, apply a consistent WeChat layout, publish through the official-account workflow, and record publication metadata. Use for daily literature monitoring, paper-to-WeChat drafting, multi-domain research updates, or turning an existing content operation into a reusable Codex skill. Do not use for one-off academic summaries that do not involve discovery, review, layout, or publishing."
+description: "用一条可重复的日更流水线完成多领域顶刊/一区论文发现、全文核验、中文解读撰稿、公众号统一排版与发布记录。适用于每日文献监测、论文转公众号、多领域研究更新，或把现有内容运营流程沉淀成可复用的 Codex skill；不适用于不涉及检索、审稿、排版或发布的一次性学术总结。"
 ---
 
-# Research Daily Content Pipeline
+# 研究日更内容流水线
 
-Turn a recurring literature-monitoring operation into a deterministic, evidence-gated publishing workflow. The skill is optimized for a multi-domain account that publishes one high-quality paper explainer per domain per day.
+把重复的文献监测与发布工作，变成一条有证据门禁、可复用、可追踪的工作流。默认面向多领域公众号：每个领域每天发布 1 篇高质量论文解读。
 
-## Operating contract
+## 运行契约
 
-- Resolve the content workspace root before writing. Call it `CONTENT_ROOT`.
-- Read `references/fangcun-domains.md` for the default three domains, schedules, output paths, journal whitelists, and topic boundaries. Adapt this file for another account or topic set.
-- Read `references/workflow.md` before running the pipeline and `references/quality-gates.md` before drafting or publishing.
-- Use the `gzh-design` skill for the “橄榄手记” WeChat layout when it is available.
-- Use `assets/signature-bar.html` as the canonical signature bar. Copy it into the target project or use the project’s configured equivalent; never rewrite its wording, colors, spacing, radius, or internal structure.
-- Publishing is an external side effect. Follow the authorization and verification rules in the project and in `references/quality-gates.md`.
+- 先解析内容工作区根目录，记为 CONTENT_ROOT。
+- 读取 references/fangcun-domains.md，获取领域、排期、输出路径、期刊范围和主题边界；换账号或换主题时先改这个文件。
+- 运行流水线前读取 references/workflow.md，撰稿或发布前读取 references/quality-gates.md。
+- 排版优先使用 gzh-design 的“橄榄手记”主题。
+- 固定签名条使用 assets/signature-bar.html。复制到目标项目后原样插入，不得改写文案、颜色、字号、间距、圆角或内部结构。
+- 发布是有外部副作用的动作，必须遵守项目授权和 references/quality-gates.md 中的发布规则。
 
-## Hard gates
+## 硬门禁
 
-1. **Journal tier.** Only JCR Q1, Chinese Academy of Sciences division-1, or a domain-recognized flagship journal enters the main publishing pool. Lower-tier papers may be background sources only.
-2. **Recency.** Prefer the last 12 months, including online-first and advance-access papers; then the last 3 years; then 3–5 years for unusually relevant work. Older papers are background or classics, not the routine daily selection.
-3. **Full text.** The main article must be grounded in a verifiable full text. Prefer a Zotero PDF, then a legitimate publisher OA or institutional-access copy. If full text is unavailable, mark the candidate `needs_pdf`, report the exact reason, and ask the user to supply the paper. Never write the formal article from an abstract alone.
-4. **Evidence.** Preserve system boundaries, functional units, CO2/CH4/N2O/CO2e/GWP wording, sample sizes, scales, statistics, scenarios, and limitations. Do not turn correlation into causation.
-5. **Format.** Use the configured theme, original figure/table objects from the PDF, a square paper-information card, both 2.35:1 and 1:1 cover checks, the canonical signature bar, and the standard closing block.
-6. **Publishing.** Default to no group notification. Stop and preserve the page when WeChat requires administrator or operator scan verification. Do not bypass safety checks or CAPTCHAs.
+1. **期刊层级。** 只有 JCR Q1、中科院一区或领域公认顶刊进入主稿池；低层级文献只能作为背景资料。
+2. **时效优先。** 最近 12 个月优先，包括 online first 和 advance access；其次最近 3 年；再其次 3–5 年且高相关。更早文献只作背景或经典理论。
+3. **全文门禁。** 主稿必须基于可核验全文。优先 Zotero PDF，其次出版社 OA、机构订阅或作者合法公开版本。全文不可得时标记为 needs_pdf，说明原因并请用户提供原文，不得只用摘要写正式文章。
+4. **证据门禁。** 保留系统边界、功能单位、CO2/CH4/N2O/CO2e/GWP 口径、样本量、尺度、统计、情景和限制条件。不能把相关关系写成确定因果。
+5. **格式门禁。** 使用统一主题、PDF 原始图表对象、方形文献信息卡、2.35:1 与 1:1 封面检查、固定签名条和标准结尾区。
+6. **发布门禁。** 默认不开启群发通知。遇到管理员或运营者扫码验证时暂停并保留页面，不绕过平台安全验证或验证码。
 
-## Run sequence
+## 运行顺序
 
-1. **Configure.** Load the domain config and progress file. Set candidate target, cut-off date, journal whitelist, output path, and current queue.
-2. **Discover.** Search systematically across the configured sources. Target 10–15 new or updated candidates per domain; include a dedicated scan of the last 12 months. Deduplicate by DOI, title, Zotero item key, historical drafts, and publication records.
-3. **Record.** Write title, authors, year, journal, volume/issue/pages, DOI, abstract, tags, and status to Zotero and the domain progress file. Use statuses such as `queued`, `needs_pdf`, `drafted`, `reviewed`, `published`, and `skipped`.
-4. **Select.** Pick one queued paper with a verifiable full text. If the best candidates lack full text, report that fact and either choose another full-text candidate or pause the main article for that domain.
-5. **Extract.** Read the full text, identify the central claim and evidence chain, and extract figures/tables from the original PDF objects. Do not redraw or alter data.
-6. **Draft and review.** Write the Chinese explainer in the fixed structure, then run the review gate before layout. Keep the title format “journal｜Chinese core finding”.
-7. **Layout and validate.** Build the WeChat section HTML, insert the canonical signature bar, validate the HTML, and generate a local preview. Check images, captions, card bounds, title wrapping, and cover crops.
-8. **Publish and record.** Create or update the official-account draft, fill the title, author, digest, cover, and body, submit publication under the configured authorization model, then record the draft ID, appmsg ID, public URL, status, preview path, and Zotero keys. Add any `needs_pdf` items to the daily report.
+1. **配置。** 读取领域配置、进度文件和候选队列，确定候选目标、时间范围、期刊白名单和输出路径。
+2. **发现。** 进行系统检索和最近 12 个月补充检索。每个领域目标新增或更新 10–15 条候选，按 DOI、题名、Zotero item key、历史成稿和发布记录去重。
+3. **入库。** 在 Zotero 和领域进度文件中记录题名、作者、年份、期刊、卷期页码、DOI、摘要、标签和状态。状态包括 queued、needs_pdf、drafted、reviewed、published、skipped。
+4. **选稿。** 优先选择队列中全文可核验的论文。如果最佳候选都缺少全文，先报告缺失情况，再改选其他全文候选；没有替代稿就暂停该领域当天主稿。
+5. **提取。** 阅读全文，梳理核心结论和证据链，从 PDF 原始对象中提取图表，不重绘、不改数据。
+6. **撰稿与审稿。** 用固定结构写中文解读，标题格式为“刊名｜中文核心发现”，通过编辑门槛后才能排版。
+7. **排版与预览。** 生成公众号 HTML，插入固定签名条，校验 HTML，生成预览，检查图片、标题换行、信息卡边界和封面裁剪。
+8. **发布与记录。** 创建或更新公众号草稿，填写标题、作者、摘要、封面和正文，按授权模型提交发布，记录草稿 ID、appmsg ID、公开链接、发布状态、预览路径和 Zotero key。把 needs_pdf 清单写进日报。
 
-## Output contract
+## 输出契约
 
-Use an independent directory per article:
+每篇文章使用独立目录：
 
-```text
-CONTENT_ROOT/output/<domain>/YYYY-MM-DD-journal-topic/
-|-- article.md
-|-- article-illustrated.md
-|-- brief.yaml
-|-- claims.yaml
-|-- sources.yaml
-|-- draft.md
-|-- review-report.json
-|-- figures/
-|-- gzh/
-```
+~~~text
+CONTENT_ROOT/output/<领域>/YYYY-MM-DD-期刊-主题/
+├── article.md
+├── article-illustrated.md
+├── brief.yaml
+├── claims.yaml
+├── sources.yaml
+├── draft.md
+├── review-report.json
+├── figures/
+└── gzh/
+~~~
 
-Keep the domain-level `library-progress.md` current. A run is not complete until the publication metadata and the next candidate queue are recorded.
+领域级 library-progress.md 必须保持最新。只有发布元数据和下一批候选队列都记录完成，一轮任务才算结束。
 
-## References
+## 参考资料
 
-- `references/fangcun-domains.md`: default domains, schedules, keywords, journal whitelists, and paths.
-- `references/workflow.md`: full phase-by-phase operating procedure.
-- `references/quality-gates.md`: candidate, full-text, evidence, writing, layout, and publishing checks.
-- `assets/signature-bar.html`: canonical brand signature bar.
+- references/fangcun-domains.md：默认领域、排期、关键词、期刊范围和路径。
+- references/workflow.md：完整的分阶段操作流程。
+- references/quality-gates.md：候选、全文、证据、写作、排版和发布检查。
+- assets/signature-bar.html：统一品牌签名条。
