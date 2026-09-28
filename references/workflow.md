@@ -1,91 +1,91 @@
-# Full operating workflow
+# 完整操作流程
 
-## 1. Load and configure
+## 1. 读取配置
 
-1. Locate `CONTENT_ROOT`, the domain progress file, the current queue, and the previous publication record.
-2. Read the domain configuration and the journal whitelist.
-3. Determine the date window. Always run a dedicated “last 12 months” scan before falling back to older literature.
-4. Prepare the candidate table with fields: title, authors, year, journal, DOI, source, OA status, full-text status, topic match, recency, and status.
+1. 找到 CONTENT_ROOT、领域进度文件、当前队列和上一次发布记录。
+2. 读取领域配置与期刊白名单。
+3. 确定时间窗口。必须先完成最近 12 个月专项检索，再回看更早文献。
+4. 建立候选表，字段包括题名、作者、年份、期刊、DOI、来源、OA 状态、全文状态、主题匹配度、时效和状态。
 
-## 2. Discover candidates
+## 2. 发现候选
 
-- Run systematic searches for the domain, then run a narrow “newest first” search.
-- Target 10–15 candidates. If fewer than 10 pass the tier and relevance gates, record the search queries and explain the shortfall.
-- Check Crossref/OpenAlex metadata and the publisher record.
-- Prefer online-first/advance-access papers when their metadata and full text are verifiable.
-- Record candidates in Zotero with tags for domain, month, daily queue, journal tier, and status.
-- Deduplicate before selection. Mark already written or published items as `done`/excluded.
+- 先做领域系统检索，再做“最新优先”的窄检索。
+- 每轮目标 10–15 条候选。如果通过期刊和主题门禁的不足 10 条，记录检索式和不足原因。
+- 核验 Crossref/OpenAlex 元数据和出版社页面。
+- 在线优先论文只要元数据和全文可核验，就优先纳入。
+- 在 Zotero 中记录领域、月份、每日队列、期刊层级和状态标签。
+- 选稿前先去重。已撰写或已发布的条目标记为 done 或排除。
 
-## 3. Select the main paper
+## 3. 选择主稿
 
-Selection order:
+选稿顺序：
 
-1. queued item with a verified PDF;
-2. newest online-first paper with legitimate full-text access;
-3. recent Q1/division-1 paper with strong relevance;
-4. older paper only when it is necessary background/classic and the user explicitly approves it.
+1. 队列中已有可核验 PDF 的条目；
+2. 有合法全文访问权限的最新 online first 论文；
+3. 最近 3 年、主题匹配度高的 Q1/一区论文；
+4. 只有用户明确同意时，才选择更早的经典文献作为主稿。
 
-If no candidate has full text:
+如果所有候选都没有全文：
 
-- mark the best candidates `needs_pdf`;
-- list title, journal, year, DOI, and the retrieval failure reason in the daily report;
-- do not publish an abstract-only article;
-- use another full-text candidate if one exists, otherwise pause the domain’s main article.
+- 把最佳候选标记为 needs_pdf；
+- 在日报中列出题名、期刊、年份、DOI 和获取失败原因；
+- 不发布摘要替代全文的文章；
+- 有其他全文候选就改选，没有就暂停该领域当天主稿。
 
-## 4. Full-text and evidence extraction
+## 4. 全文与证据提取
 
-- Read the complete paper, not only the abstract.
-- Identify the research question, system boundary, data, methods, main results, counterfactual/scenario assumptions, and limitations.
-- Extract figures/tables from the original PDF image objects. Preserve labels and data.
-- Build a claim list with evidence anchors. Separate measured values, modeled estimates, and scenario outputs.
-- For carbon papers, distinguish CO2, CH4, N2O, CO2e, GWP-100, direct emissions, downstream emissions, and avoided emissions.
+- 阅读完整论文，而不是只看摘要。
+- 梳理研究问题、系统边界、数据、方法、主要结果、反事实/情景假设和限制条件。
+- 从 PDF 原始图像对象中提取图表，保留标签和数据。
+- 建立 claim 清单，为每个观点记录证据锚点。区分实测值、模型估计和情景结果。
+- 碳排放论文要区分 CO2、CH4、N2O、CO2e、GWP-100、直接排放、下游排放和替代减排。
 
-## 5. Draft the Chinese explainer
+## 5. 撰写中文解读
 
-Use the fixed structure:
+固定结构：
 
-```text
+~~~text
 文章来源
 研究简介
 主要图文
 关键数据
 研究结论与边界
 论文引用
-```
+~~~
 
-Title format: `journal｜Chinese core finding`.
+标题格式：刊名｜中文核心发现。
 
-Keep high information density. Preserve units, sample sizes, spatial/temporal scale, mechanisms, and limitations. Avoid generic transitions and unsupported causal language.
+保持高信息密度，保留单位、样本量、时空尺度、机制和限制条件。避免空泛过渡和无证据的因果表达。
 
-## 6. Review gate
+## 6. 编辑审稿门禁
 
-Before layout, check:
+排版前检查：
 
-- journal tier and publication date;
-- DOI and bibliographic fields;
-- full-text availability and source;
-- every numeric claim against the paper;
-- figure/table captions and order;
-- boundary language for models, scenarios, and estimates;
-- title, lead, section logic, and conclusion;
-- no duplicated claim, no filler, no overstatement.
+- 期刊层级和发表时间；
+- DOI 和文献信息；
+- 全文来源和可用性；
+- 每个数值是否来自论文；
+- 图表顺序和图注；
+- 模型、情景和估算的边界语言；
+- 标题、导语、章节逻辑和结论；
+- 观点是否重复、是否有套话、是否过度外推。
 
-If the review fails, revise or choose another paper. Do not move a failed draft into layout.
+审稿未通过时，修改或更换论文。失败稿不得进入排版。
 
-## 7. Layout and preview
+## 7. 排版与预览
 
-- Use the `gzh-design` “橄榄手记” theme.
-- Generate the paper-information card, a wide cover, and a 1:1 crop check.
-- Extract original figure/table images into the article directory.
-- Insert the canonical signature bar from `assets/signature-bar.html` without modification.
-- Validate the generated HTML and generate the preview page.
-- Check mobile rendering: image loading, title wrapping, card bounds, table overflow, captions, and closing block.
+- 使用 gzh-design 的“橄榄手记”主题。
+- 生成文献信息卡、宽封面和 1:1 裁剪检查图。
+- 将原文图表图片提取到文章目录。
+- 插入 assets/signature-bar.html 中的统一签名条，不做任何修改。
+- 校验生成的 HTML，生成预览页面。
+- 检查手机端渲染：图片加载、标题换行、信息卡边界、表格溢出、图注和结尾区。
 
-## 8. Publish and record
+## 8. 发布与记录
 
-- Create the official-account draft.
-- Fill title, author/byline, digest, cover, body, and image captions.
-- Default to no group notification and the “show on account homepage / allow recommendation” publishing path.
-- If scan verification appears, stop, preserve the tab, and ask the user to scan. Do not bypass verification.
-- After submission, record the draft ID, appmsg ID, public URL, status, preview path, Zotero item/attachment keys, and any blockers.
-- Report `needs_pdf` candidates in the same run summary.
+- 创建公众号草稿。
+- 填写标题、作者/署名、摘要、封面、正文和图注。
+- 默认不开启群发通知，选择“内容展示在公众号主页并允许平台推荐”的发布路径。
+- 出现扫码验证时暂停，保留标签页并请用户扫码。不能绕过验证。
+- 提交后记录草稿 ID、appmsg ID、公开链接、状态、预览路径、Zotero item/attachment key 和阻断点。
+- 在同一次运行总结中报告 needs_pdf 候选。
