@@ -1,5 +1,7 @@
 # research-daily-content-pipeline
 
+Repository: https://github.com/dada303312/research-daily-content-pipeline
+
 A Codex skill for a repeatable daily research-content operation:
 
 - discover recent Q1 / CAS division-1 / flagship papers across multiple research domains;
