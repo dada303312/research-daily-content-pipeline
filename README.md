@@ -37,6 +37,14 @@ Adapt `references/fangcun-domains.md` when reusing the skill for another account
 4. **Evidence survives translation.** Preserve systems boundaries, units, CO2/CH4/N2O/CO2e/GWP wording, scenarios, statistics, and limitations.
 5. **Brand is a component, not a per-article decision.** The signature bar and layout are fixed assets.
 
+## Pages CMS
+
+This repository includes a `.pages.yml` config. Open [app.pagescms.org](https://app.pagescms.org), sign in with GitHub, install the Pages CMS GitHub App on the `dada303312` account, and select this repository. The CMS will expose:
+
+- `blog/` — editable blog posts;
+- `docs/` — the unified research workflow document;
+- `media/` — media storage.
+
 ## Files
 
 ```text
@@ -46,6 +54,8 @@ references/fangcun-domains.md
 references/workflow.md
 references/quality-gates.md
 assets/signature-bar.html
+.pages.yml
+docs/daily-workflow.md
 blog/from-daily-account-to-codex-skill.md
 ```
 
